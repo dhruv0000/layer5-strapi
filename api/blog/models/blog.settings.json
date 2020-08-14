@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "name": "blog"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "datetime"
+    },
+    "author": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "blogs"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Content": {
+      "type": "richtext",
+      "default": "--- tags: Community, Projects, News ---",
+      "required": true
+    }
+  }
+}
